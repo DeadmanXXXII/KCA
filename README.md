@@ -1,7 +1,7 @@
 # KCA
 Bug hunt msrc 🤞 DB too.
 
-Here are the corrected steps to reproduce the vulnerability exploit using the scripts in the correct order: PostCreationScript.py, KubeCloudV2Azure.py, and SearchAndDestroyAzure.py.
+Here are the steps to reproduce the vulnerability exploit using the scripts 
 
 Steps to Reproduce
 
@@ -26,31 +26,31 @@ KubeCloudV2Azure.py: For creating a virtual machine.
 SearchAndDestroyAzure.py: For deleting files in shared directories.
 
 
-Make sure the scripts are configured with the correct subscription ID, resource group name, and any other parameters required (e.g., VM name, admin credentials).
+Make sure the scripts are configured with the correct subscription ID, resource group name, and any other parameters required (e.g., VM name).
 
 
 
 3. Run the Post-Creation Script:
 
-Before creating the virtual machine, run PostCreationScript.py to set up any additional configurations or scripts that need to be executed after the VM is created:
+Before creating the virtual machine, run noauth.py to set up any additional configurations or scripts that need to be executed after the VM is created:
 
-python PostCreationScript.py
+python noauth.py
 
 
 
 4. Create the Virtual Machine:
 
-After running the post-creation script, run KubeCloudV2Azure.py to create the virtual machine:
+After running the creation script, run KubeCloudV2Azure.py to breach the virtual machine:
 
 python KubeCloudV2Azure.py
 
-Ensure the VM is created successfully and note its public IP address for later access.
+Ensure the VM is web shelled successfully and note its public IP address for later access.
 
 
 
 5. Access Shared Directories:
 
-Log into the newly created virtual machine via SSH using the public IP and admin credentials specified in the script.
+Log into the newly created virtual machine via SSH using the public IP and credentials specified in the script.
 
 Ensure that the shared directories exist and contain files for deletion.
 
