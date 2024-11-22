@@ -1,7 +1,7 @@
 # KCA
 Bug hunt msrc 🤞 DB too.
 
-Here are the steps to reproduce the vulnerability exploit using the scripts 
+Here are the steps to reproduce the vulnerability exploit using the scripts to create a malicious instance that begins attacking shared directories within the cdn remotely no-auth or with auth.
 
 Steps to Reproduce
 
@@ -260,3 +260,113 @@ if __name__ == "__main__":
     run_additional_scripts()
 ```
 
+---
+
+CVSS Score Analysis
+
+CVSS 3.1 Base Metrics:
+
+Attack Vector (AV): Network (N) — Exploitation occurs remotely over the network.
+
+Attack Complexity (AC): Low (L) — The exploit is straightforward given the provided scripts.
+
+Privileges Required (PR): None (N) — Exploitation succeeds without prior authentication.
+
+User Interaction (UI): None (N) — The attacker does not require assistance from a user.
+
+Scope (S): Changed (C) — Exploitation impacts multiple components (e.g., VMs, shared directories).
+
+Confidentiality (C): High (H) — File deletion can lead to data loss.
+
+Integrity (I): High (H) — The attacker can potentially modify or delete data.
+
+Availability (A): High (H) — Files and resources are deleted, affecting availability.
+
+
+Calculated CVSS Score:
+
+9.8 (Critical) — This is under the assumption that the environment is configured to allow unauthenticated API calls or the scripts exploit a vulnerability in Azure.
+
+
+---
+
+CWE Identifications
+
+The following CWEs are relevant to the described vulnerability:
+
+1. CWE-306: Missing Authentication for Critical Function
+
+The ability to execute API requests (e.g., VM creation) without proper authentication.
+
+
+
+2. CWE-276: Incorrect Default Permissions
+
+Misconfigured permissions in Azure resource management or shared directories.
+
+
+
+3. CWE-434: Unrestricted Upload of File with Dangerous Type
+
+If the web shell installation enables further exploitation.
+
+
+
+4. CWE-522: Insufficiently Protected Credentials
+
+Hardcoded credentials in the script (e.g., adminPassword).
+
+
+
+5. CWE-863: Incorrect Authorization
+
+If attackers can perform actions intended only for authorized users.
+
+
+
+
+
+---
+
+References
+
+1. CWE-306: Missing Authentication for Critical Function
+
+
+2. CWE-276: Incorrect Default Permissions
+
+
+3. CWE-434: Unrestricted Upload of File with Dangerous Type
+
+
+4. CWE-522: Insufficiently Protected Credentials
+
+
+5. CWE-863: Incorrect Authorization
+
+
+
+CVSS Calculators:
+
+FIRST CVSS Calculator
+
+
+Additional References:
+
+Azure Security Documentation
+
+Responsible Disclosure Guidelines
+
+
+
+---
+
+Key Notes:
+
+Confirm the vulnerability’s root cause (e.g., misconfiguration or systemic flaw) before assigning a CVSS score.
+
+
+Let me know if you need more refinement!
+
+Many thanks,
+DeadmanXXXII
