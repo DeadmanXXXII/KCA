@@ -3,7 +3,7 @@ Bug hunt msrc 🤞 DB too.
 
 
 KubecloudV2Azure.py
-```pyhton
+```python
 import os
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.compute import ComputeManagementClient
@@ -60,3 +60,37 @@ if __name__ == "__main__":
     create_virtual_machine()
 ```
 
+Search and Destroy Azure.py
+
+```python
+import os
+
+SHARED_DIRECTORIES = [
+    "/mnt/shared_directory_1",
+    "/mnt/shared_directory_2"
+]
+
+def search_and_destroy_all_files():
+    try:
+        for shared_directory in SHARED_DIRECTORIES:
+            print(f"Searching in shared directory: {shared_directory}...")
+            for root, dirs, files in os.walk(shared_directory):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    print(f"Deleting file: {file_path}...")
+                    os.remove(file_path)
+                    print(f"Deleted: {file_path}")
+
+                for dir in dirs:
+                    dir_path = os.path.join(root, dir)
+                    if not os.listdir(dir_path):
+                        print(f"Deleting empty directory: {dir_path}...")
+                        os.rmdir(dir_path)
+                        print(f"Deleted: {dir_path}")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+if __name__ == "__main__":
+    search_and_destroy_all_files()
+```
